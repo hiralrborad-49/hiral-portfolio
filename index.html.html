@@ -1,0 +1,1094 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hiral Borad — Senior Business Analyst</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #faf9f7;
+    --bg2: #f3f0eb;
+    --dark: #1c1c1c;
+    --mid: #4a4a4a;
+    --muted: #8a8680;
+    --accent: #a0673a;
+    --accent-light: #c49070;
+    --border: #e2ddd6;
+    --white: #ffffff;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--dark);
+    font-family: 'Outfit', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+    line-height: 1.7;
+  }
+
+  /* SCROLLBAR */
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--bg2); }
+  ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 2px; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(250,249,247,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 60px;
+    height: 68px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.35rem;
+    font-weight: 500;
+    color: var(--dark);
+    text-decoration: none;
+    letter-spacing: 0.02em;
+  }
+  .nav-logo span { color: var(--accent); font-style: italic; }
+  .nav-links { display: flex; gap: 36px; list-style: none; }
+  .nav-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+
+  /* HERO */
+  #hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 100px 60px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-grid-bg {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(var(--border) 1px, transparent 1px),
+      linear-gradient(90deg, var(--border) 1px, transparent 1px);
+    background-size: 80px 80px;
+    opacity: 0.45;
+  }
+  .hero-blob {
+    position: absolute;
+    right: -100px; top: 50%;
+    transform: translateY(-50%);
+    width: 700px; height: 700px;
+    background: radial-gradient(ellipse at center, rgba(160,103,58,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-inner {
+    position: relative; z-index: 2;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 80px; align-items: center;
+    max-width: 1200px; width: 100%;
+  }
+  .hero-left {}
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(160,103,58,0.08);
+    border: 1px solid rgba(160,103,58,0.2);
+    color: var(--accent);
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 600;
+    padding: 6px 14px;
+    border-radius: 100px;
+    margin-bottom: 28px;
+  }
+  .hero-tag::before { content: ''; width: 6px; height: 6px; background: var(--accent); border-radius: 50%; }
+  .hero-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(52px, 7vw, 88px);
+    font-weight: 300;
+    line-height: 1.0;
+    color: var(--dark);
+    letter-spacing: -0.01em;
+    margin-bottom: 8px;
+  }
+  .hero-name em {
+    font-style: italic;
+    color: var(--accent);
+    display: block;
+  }
+  .hero-title {
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--muted);
+    margin-bottom: 32px;
+    letter-spacing: 0.05em;
+  }
+  .hero-summary {
+    font-size: 1.05rem;
+    color: var(--mid);
+    line-height: 1.8;
+    max-width: 500px;
+    margin-bottom: 44px;
+  }
+  .hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--accent);
+    color: #fff;
+    padding: 14px 32px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 0.82rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 600;
+    transition: background 0.2s, transform 0.15s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: #8a5530; transform: translateY(-1px); }
+  .btn-outline {
+    border: 1px solid var(--border);
+    color: var(--mid);
+    padding: 14px 32px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 0.82rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 500;
+    transition: border-color 0.2s, color 0.2s, transform 0.15s;
+    display: inline-block;
+  }
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-1px); }
+
+  .hero-right {}
+  .stats-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 2px;
+    background: var(--border); border: 1px solid var(--border);
+    border-radius: 12px; overflow: hidden;
+  }
+  .stat-card {
+    background: var(--white);
+    padding: 36px 32px;
+    transition: background 0.2s;
+  }
+  .stat-card:hover { background: #fdf9f5; }
+  .stat-card:first-child { border-radius: 10px 0 0 0; }
+  .stat-card:nth-child(2) { border-radius: 0 10px 0 0; }
+  .stat-card:nth-child(3) { border-radius: 0 0 0 10px; }
+  .stat-card:last-child { border-radius: 0 0 10px 0; }
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3.2rem;
+    font-weight: 500;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .stat-label {
+    font-size: 0.82rem;
+    color: var(--muted);
+    font-weight: 400;
+    line-height: 1.4;
+  }
+
+  /* SECTION COMMONS */
+  section { padding: 100px 60px; }
+  .section-inner { max-width: 1200px; margin: 0 auto; }
+  .section-eyebrow {
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 12px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .section-eyebrow::after { content: ''; flex: 0 0 40px; height: 1px; background: var(--accent); }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 4vw, 52px);
+    font-weight: 400;
+    line-height: 1.15;
+    margin-bottom: 16px;
+  }
+  .section-title em { font-style: italic; color: var(--accent); }
+  .section-sub {
+    color: var(--muted);
+    font-size: 1rem;
+    max-width: 520px;
+    margin-bottom: 60px;
+  }
+
+  /* SKILLS */
+  #skills { background: var(--dark); }
+  #skills .section-eyebrow { color: var(--accent-light); }
+  #skills .section-eyebrow::after { background: var(--accent-light); }
+  #skills .section-title { color: var(--bg); }
+  #skills .section-title em { color: var(--accent-light); }
+  #skills .section-sub { color: rgba(250,249,247,0.5); }
+
+  .skills-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 12px; overflow: hidden;
+  }
+  .skill-group {
+    background: rgba(255,255,255,0.03);
+    padding: 40px 36px;
+    transition: background 0.2s;
+  }
+  .skill-group:hover { background: rgba(255,255,255,0.06); }
+  .skill-icon {
+    width: 44px; height: 44px;
+    background: rgba(160,103,58,0.15);
+    border: 1px solid rgba(160,103,58,0.25);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 20px;
+    font-size: 1.3rem;
+  }
+  .skill-group-title {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--bg);
+    margin-bottom: 16px;
+    letter-spacing: 0.02em;
+  }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .skill-tag {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.08);
+    color: rgba(250,249,247,0.6);
+    font-size: 0.75rem;
+    padding: 5px 12px;
+    border-radius: 100px;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    transition: all 0.2s;
+  }
+  .skill-tag:hover {
+    background: rgba(160,103,58,0.2);
+    border-color: rgba(160,103,58,0.4);
+    color: var(--accent-light);
+  }
+
+  /* EXPERIENCE */
+  #experience { background: var(--bg); }
+  .timeline { position: relative; }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 190px; top: 0; bottom: 0;
+    width: 1px;
+    background: var(--border);
+  }
+  .timeline-item {
+    display: grid;
+    grid-template-columns: 190px 1fr;
+    gap: 0 48px;
+    margin-bottom: 56px;
+    position: relative;
+  }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-date {
+    text-align: right;
+    padding-right: 48px;
+    padding-top: 4px;
+  }
+  .tl-period {
+    font-size: 0.78rem;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+    font-weight: 400;
+  }
+  .tl-company {
+    font-size: 0.85rem;
+    color: var(--accent);
+    font-weight: 600;
+    margin-top: 4px;
+    letter-spacing: 0.02em;
+  }
+  .timeline-dot {
+    position: absolute;
+    left: 190px;
+    top: 8px;
+    width: 10px; height: 10px;
+    background: var(--accent);
+    border-radius: 50%;
+    border: 2px solid var(--bg);
+    transform: translateX(-50%);
+    z-index: 1;
+  }
+  .timeline-content {
+    padding-bottom: 48px;
+    border-bottom: 1px solid var(--border);
+  }
+  .timeline-item:last-child .timeline-content { border-bottom: none; }
+  .tl-role {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--dark);
+    margin-bottom: 4px;
+    letter-bottom: -0.01em;
+  }
+  .tl-project {
+    font-size: 0.8rem;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    font-weight: 500;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .tl-bullets { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .tl-bullets li {
+    font-size: 0.9rem;
+    color: var(--mid);
+    padding-left: 16px;
+    position: relative;
+    line-height: 1.6;
+  }
+  .tl-bullets li::before {
+    content: '';
+    position: absolute; left: 0; top: 10px;
+    width: 5px; height: 1px;
+    background: var(--accent);
+  }
+  .tl-highlight {
+    display: inline-block;
+    background: rgba(160,103,58,0.08);
+    border: 1px solid rgba(160,103,58,0.15);
+    color: var(--accent);
+    font-size: 0.75rem;
+    padding: 3px 10px;
+    border-radius: 100px;
+    font-weight: 500;
+    margin-bottom: 12px;
+  }
+
+  /* ACHIEVEMENTS */
+  #achievements { background: var(--bg2); }
+  .achievements-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+  }
+  .achievement-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 36px 32px;
+    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+    position: relative; overflow: hidden;
+  }
+  .achievement-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+  }
+  .achievement-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.07); border-color: rgba(160,103,58,0.2); }
+  .achievement-card:hover::before { transform: scaleX(1); }
+  .ach-icon { font-size: 1.8rem; margin-bottom: 16px; }
+  .ach-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.4rem;
+    font-weight: 600;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .ach-label {
+    font-size: 0.88rem;
+    color: var(--mid);
+    line-height: 1.5;
+    font-weight: 400;
+  }
+
+  /* PORTFOLIO WORK */
+  #work { background: var(--bg); }
+  .work-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 12px; overflow: hidden;
+  }
+  .work-card:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+  }
+  .work-card {
+    background: var(--white);
+    padding: 44px 40px;
+    display: flex; flex-direction: column; gap: 16px;
+    transition: background 0.2s;
+  }
+  .work-card:hover { background: #fdf9f5; }
+  .work-card-tag {
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+  }
+  .work-card-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--dark);
+    line-height: 1.25;
+  }
+  .work-card-desc {
+    font-size: 0.9rem;
+    color: var(--muted);
+    line-height: 1.7;
+    flex: 1;
+  }
+  .work-card-meta {
+    font-size: 0.78rem;
+    color: var(--muted);
+    border-top: 1px solid var(--border);
+    padding-top: 16px;
+    display: flex; gap: 16px; flex-wrap: wrap;
+    font-weight: 400;
+  }
+  .work-card-meta span {
+    display: flex; align-items: center; gap: 5px;
+  }
+
+  /* TESTIMONIALS */
+  #testimonials { background: var(--dark); }
+  #testimonials .section-eyebrow { color: var(--accent-light); }
+  #testimonials .section-eyebrow::after { background: var(--accent-light); }
+  #testimonials .section-title { color: var(--bg); }
+  #testimonials .section-title em { color: var(--accent-light); }
+  #testimonials .section-sub { color: rgba(250,249,247,0.5); }
+
+  .testimonials-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+  }
+  .testimonial-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 12px; padding: 36px 32px;
+    display: flex; flex-direction: column; gap: 20px;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .testimonial-card:hover {
+    background: rgba(255,255,255,0.07);
+    border-color: rgba(160,103,58,0.3);
+  }
+  .quote-mark {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3.5rem;
+    color: var(--accent);
+    line-height: 0.5;
+    opacity: 0.5;
+  }
+  .testimonial-text {
+    font-size: 0.9rem;
+    color: rgba(250,249,247,0.65);
+    line-height: 1.8;
+    flex: 1;
+  }
+  .testimonial-author {
+    display: flex; align-items: center; gap: 12px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    padding-top: 20px;
+  }
+  .author-avatar {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: rgba(160,103,58,0.2);
+    border: 1px solid rgba(160,103,58,0.3);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    color: var(--accent-light);
+    font-weight: 500;
+  }
+  .author-info {}
+  .author-name {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--bg);
+  }
+  .author-role {
+    font-size: 0.75rem;
+    color: var(--muted);
+    font-weight: 300;
+  }
+
+  /* TOOLS */
+  #tools { background: var(--bg2); }
+  .tools-wrapper {
+    display: flex; flex-wrap: wrap; gap: 12px;
+    margin-top: 48px;
+  }
+  .tool-chip {
+    background: var(--white);
+    border: 1px solid var(--border);
+    padding: 10px 20px;
+    border-radius: 100px;
+    font-size: 0.82rem;
+    color: var(--mid);
+    font-weight: 400;
+    display: flex; align-items: center; gap: 8px;
+    transition: all 0.2s;
+    cursor: default;
+  }
+  .tool-chip:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: rgba(160,103,58,0.05);
+    transform: translateY(-2px);
+  }
+  .tool-chip-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    opacity: 0.5;
+    transition: opacity 0.2s;
+  }
+  .tool-chip:hover .tool-chip-dot { opacity: 1; }
+
+  /* CONTACT */
+  #contact {
+    background: var(--bg);
+    text-align: center;
+  }
+  #contact .section-eyebrow { justify-content: center; }
+  #contact .section-eyebrow::after { display: none; }
+  #contact .section-eyebrow::before { content: ''; flex: 0 0 40px; height: 1px; background: var(--accent); }
+  #contact .section-title { text-align: center; }
+  #contact .section-sub { text-align: center; margin: 0 auto 48px; max-width: 460px; }
+
+  .contact-card {
+    max-width: 640px; margin: 0 auto;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 56px 48px;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.05);
+  }
+  .contact-links { display: flex; flex-direction: column; gap: 16px; margin-top: 8px; }
+  .contact-link {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 24px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    text-decoration: none;
+    transition: all 0.2s;
+    group: true;
+  }
+  .contact-link:hover { border-color: var(--accent); background: rgba(160,103,58,0.03); transform: translateX(4px); }
+  .contact-link-left { display: flex; align-items: center; gap: 14px; }
+  .contact-link-icon {
+    width: 38px; height: 38px;
+    background: rgba(160,103,58,0.08);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem;
+    transition: background 0.2s;
+  }
+  .contact-link:hover .contact-link-icon { background: rgba(160,103,58,0.15); }
+  .contact-link-label {
+    font-size: 0.78rem;
+    color: var(--muted);
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    display: block;
+  }
+  .contact-link-value {
+    font-size: 0.95rem;
+    color: var(--dark);
+    font-weight: 400;
+    display: block;
+  }
+  .contact-link-arrow { color: var(--muted); font-size: 1rem; transition: transform 0.2s, color 0.2s; }
+  .contact-link:hover .contact-link-arrow { transform: translateX(4px); color: var(--accent); }
+
+  /* FOOTER */
+  footer {
+    background: var(--dark);
+    padding: 32px 60px;
+    display: flex; align-items: center; justify-content: space-between;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    color: rgba(250,249,247,0.4);
+    font-weight: 300;
+    font-style: italic;
+  }
+  .footer-copy {
+    font-size: 0.75rem;
+    color: rgba(250,249,247,0.25);
+    letter-spacing: 0.05em;
+  }
+
+  /* ANIMATIONS */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.65s ease, transform 0.65s ease;
+  }
+  .fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .fade-up-delay-1 { transition-delay: 0.1s; }
+  .fade-up-delay-2 { transition-delay: 0.2s; }
+  .fade-up-delay-3 { transition-delay: 0.3s; }
+  .fade-up-delay-4 { transition-delay: 0.4s; }
+  .fade-up-delay-5 { transition-delay: 0.5s; }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    nav { padding: 0 24px; }
+    .nav-links { display: none; }
+    section { padding: 72px 24px; }
+    #hero { padding: 100px 24px 72px; }
+    .hero-inner { grid-template-columns: 1fr; gap: 48px; }
+    .skills-grid { grid-template-columns: 1fr; }
+    .achievements-grid { grid-template-columns: 1fr 1fr; }
+    .work-grid { grid-template-columns: 1fr; }
+    .testimonials-grid { grid-template-columns: 1fr; }
+    .timeline::before { left: 0; }
+    .timeline-item { grid-template-columns: 1fr; gap: 8px; }
+    .timeline-date { text-align: left; padding-right: 0; padding-left: 20px; }
+    .timeline-dot { left: 0; }
+    .timeline-content { padding-left: 20px; }
+    footer { flex-direction: column; gap: 8px; text-align: center; padding: 24px; }
+    .contact-card { padding: 36px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">Hiral <em>Borad</em></a>
+  <ul class="nav-links">
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#testimonials">Testimonials</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-blob"></div>
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-tag fade-up">Senior Business Analyst · 9+ Years</div>
+      <h1 class="hero-name fade-up fade-up-delay-1">Hiral<em>Borad</em></h1>
+      <p class="hero-title fade-up fade-up-delay-2">PSPO I · MCA · Pune, India</p>
+      <p class="hero-summary fade-up fade-up-delay-3">
+        Translating complex business problems into scalable product solutions. Specialised in SaaS, fintech, and enterprise platforms — with a track record of impacting 20M+ users and driving 10x revenue growth.
+      </p>
+      <div class="hero-ctas fade-up fade-up-delay-4">
+        <a href="#contact" class="btn-primary">Get in Touch</a>
+        <a href="#work" class="btn-outline">View Work</a>
+      </div>
+    </div>
+    <div class="hero-right fade-up fade-up-delay-3">
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-num">9+</div>
+          <div class="stat-label">Years of Experience</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">20M+</div>
+          <div class="stat-label">Users Impacted</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">10x</div>
+          <div class="stat-label">Revenue Growth Delivered</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">50+</div>
+          <div class="stat-label">KPIs Defined & Governed</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-inner">
+    <p class="section-eyebrow fade-up">What I bring</p>
+    <h2 class="section-title fade-up fade-up-delay-1">Core <em>Expertise</em></h2>
+    <p class="section-sub fade-up fade-up-delay-2">From requirement elicitation to enterprise delivery — the full BA spectrum.</p>
+    <div class="skills-grid fade-up fade-up-delay-2">
+      <div class="skill-group">
+        <div class="skill-icon">📋</div>
+        <div class="skill-group-title">Business Analysis</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Requirement Elicitation</span>
+          <span class="skill-tag">Stakeholder Management</span>
+          <span class="skill-tag">Process Mapping</span>
+          <span class="skill-tag">GAP Analysis</span>
+          <span class="skill-tag">UAT Planning</span>
+          <span class="skill-tag">Agile Ceremonies</span>
+          <span class="skill-tag">Stakeholder Workshops</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-icon">🗺️</div>
+        <div class="skill-group-title">Product & Strategy</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Product Roadmapping</span>
+          <span class="skill-tag">Backlog Prioritisation</span>
+          <span class="skill-tag">Pre-Sales Strategy</span>
+          <span class="skill-tag">Pitch Decks</span>
+          <span class="skill-tag">Client Presentations</span>
+          <span class="skill-tag">User Stories</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-icon">📊</div>
+        <div class="skill-group-title">Data & Analytics</div>
+        <div class="skill-tags">
+          <span class="skill-tag">SQL Validation</span>
+          <span class="skill-tag">KPI Definition</span>
+          <span class="skill-tag">Data Mapping</span>
+          <span class="skill-tag">Reporting</span>
+          <span class="skill-tag">Power BI</span>
+          <span class="skill-tag">Microsoft Fabric</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-inner">
+    <p class="section-eyebrow fade-up">Career journey</p>
+    <h2 class="section-title fade-up fade-up-delay-1">Professional <em>Experience</em></h2>
+    <p class="section-sub fade-up fade-up-delay-2">9 years across SaaS, fintech, healthcare, and enterprise platforms.</p>
+    <div class="timeline fade-up fade-up-delay-2">
+
+      <div class="timeline-item">
+        <div class="timeline-date">
+          <div class="tl-period">May 2023 – Present</div>
+          <div class="tl-company">NewVision Software</div>
+        </div>
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <div class="tl-role">Senior Business Analyst</div>
+          <div class="tl-project">ING Americas · SKPT · Deloitte B2B SaaS</div>
+          <ul class="tl-bullets">
+            <li>Leading QA process optimisation with 10+ automation scenarios, reducing manual testing effort significantly</li>
+            <li>Working with leading financial platforms including Murex, Sophis, Broadridge, and DTCC</li>
+            <li>Led business analysis across 11 source systems, defining 50+ KPIs aligned with reporting and source data</li>
+            <li>Drove requirement discovery across 20+ global stakeholders for Deloitte's B2B SaaS platform</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">
+          <div class="tl-period">Sep 2022 – Apr 2023</div>
+          <div class="tl-company">SoluteLabs</div>
+        </div>
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <div class="tl-role">Senior BA & Product Manager</div>
+          <div class="tl-project">Roche Japan Healthcare Platform</div>
+          <span class="tl-highlight">✦ 200% Contract Extension Secured</span>
+          <ul class="tl-bullets">
+            <li>Led Roche Japan platform assessing 50+ lab instruments and 500+ reagents</li>
+            <li>Managed a 20+ member cross-functional team across delivery</li>
+            <li>Owned the product roadmap end-to-end for an e-commerce platform</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">
+          <div class="tl-period">Jan 2021 – Aug 2022</div>
+          <div class="tl-company">Yudiz Solutions</div>
+        </div>
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <div class="tl-role">Senior BA & Product Manager</div>
+          <div class="tl-project">CricTracker · FanSportiz Pre-Sales</div>
+          <span class="tl-highlight">✦ 20M+ Users · 10x Revenue Growth</span>
+          <ul class="tl-bullets">
+            <li>Led CricTracker platform transformation serving 20M+ users, contributing to 10x revenue growth</li>
+            <li>Led pre-sales strategy and pitch presentations, closing 4 enterprise deals within a single month</li>
+            <li>Built and mentored BA team, improving overall team efficiency by 30%</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">
+          <div class="tl-period">Jan 2017 – Dec 2020</div>
+          <div class="tl-company">Yudiz Solutions</div>
+        </div>
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <div class="tl-role">Business Analyst</div>
+          <div class="tl-project">Multi-domain Projects · Agile Delivery</div>
+          <ul class="tl-bullets">
+            <li>Delivered requirement analysis and documentation across 20+ diverse projects</li>
+            <li>Supported Agile delivery and direct client coordination across multiple domains</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section id="achievements">
+  <div class="section-inner">
+    <p class="section-eyebrow fade-up">By the numbers</p>
+    <h2 class="section-title fade-up fade-up-delay-1">Key <em>Achievements</em></h2>
+    <p class="section-sub fade-up fade-up-delay-2">Impact that goes beyond deliverables.</p>
+    <div class="achievements-grid fade-up fade-up-delay-2">
+      <div class="achievement-card">
+        <div class="ach-icon">🚀</div>
+        <div class="ach-num">20M+</div>
+        <div class="ach-label">Users impacted through platform transformation at CricTracker</div>
+      </div>
+      <div class="achievement-card">
+        <div class="ach-icon">📈</div>
+        <div class="ach-num">10x</div>
+        <div class="ach-label">Revenue growth contribution through product optimisation</div>
+      </div>
+      <div class="achievement-card">
+        <div class="ach-icon">🤝</div>
+        <div class="ach-num">4</div>
+        <div class="ach-label">Enterprise deals closed in a single month via strategic pitch presentations</div>
+      </div>
+      <div class="achievement-card">
+        <div class="ach-icon">📄</div>
+        <div class="ach-num">200%</div>
+        <div class="ach-label">Contract extension secured through consistent stakeholder engagement</div>
+      </div>
+      <div class="achievement-card">
+        <div class="ach-icon">👥</div>
+        <div class="ach-num">20+</div>
+        <div class="ach-label">Cross-functional team members led across complex enterprise deliveries</div>
+      </div>
+      <div class="achievement-card">
+        <div class="ach-icon">🎯</div>
+        <div class="ach-num">50+</div>
+        <div class="ach-label">Business KPIs defined and governed for enterprise data initiatives</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WORK / PORTFOLIO -->
+<section id="work">
+  <div class="section-inner">
+    <p class="section-eyebrow fade-up">Featured work</p>
+    <h2 class="section-title fade-up fade-up-delay-1">Portfolio <em>Highlights</em></h2>
+    <p class="section-sub fade-up fade-up-delay-2">A selection of impactful projects across domains and scales.</p>
+    <div class="work-grid fade-up fade-up-delay-2">
+      <div class="work-card">
+        <span class="work-card-tag">FinTech · QA Automation</span>
+        <h3 class="work-card-title">ING Americas — QA & Data Validation</h3>
+        <p class="work-card-desc">Defined 10+ automation scenarios, reducing manual testing effort. Designed validation workflows for file-based data processing with Murex, Broadridge, and DTCC integrations.</p>
+        <div class="work-card-meta">
+          <span>📍 NewVision Software</span>
+          <span>🏦 Financial Platforms</span>
+        </div>
+      </div>
+      <div class="work-card">
+        <span class="work-card-tag">Enterprise · Data Lake</span>
+        <h3 class="work-card-title">SKPT — Enterprise Data Lake Initiative</h3>
+        <p class="work-card-desc">Led BA across 11 source systems. Conducted SME workshops for requirement discovery and defined 50+ KPIs bridging business, data engineering, and BI reporting teams.</p>
+        <div class="work-card-meta">
+          <span>📍 NewVision Software</span>
+          <span>📊 50+ KPIs Defined</span>
+        </div>
+      </div>
+      <div class="work-card">
+        <span class="work-card-tag">Healthcare · Enterprise Delivery</span>
+        <h3 class="work-card-title">Roche Japan — Lab Instrument Platform</h3>
+        <p class="work-card-desc">Led product analysis of 50+ lab instruments and 500+ reagents. Managed a 20+ person cross-functional team. Delivered outcomes that secured a 200% contract extension.</p>
+        <div class="work-card-meta">
+          <span>📍 SoluteLabs</span>
+          <span>🔬 Healthcare Tech</span>
+        </div>
+      </div>
+      <div class="work-card">
+        <span class="work-card-tag">Sports Tech · Post-Sales</span>
+        <h3 class="work-card-title">CricTracker — Platform Transformation</h3>
+        <p class="work-card-desc">Led full post-sales platform transformation for one of India's leading cricket platforms. Owned product roadmap, defined user journeys, and coordinated delivery — serving 20M+ users and contributing to 10x revenue growth.</p>
+        <div class="work-card-meta">
+          <span>📍 Yudiz Solutions</span>
+          <span>🏏 20M+ Users</span>
+        </div>
+      </div>
+      <div class="work-card">
+        <span class="work-card-tag">Fantasy Sports · Pre-Sales · White Label</span>
+        <h3 class="work-card-title">FanSportiz — Fantasy Sports Platform</h3>
+        <p class="work-card-desc">Led pre-sales strategy and pitch presentations for FanSportiz, a fantasy sports white label product. Closed 4 enterprise deals within a single month through structured client presentations and solution positioning.</p>
+        <div class="work-card-meta">
+          <span>📍 Yudiz Solutions</span>
+          <span>🏆 4 Deals in 1 Month</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="section-inner">
+    <p class="section-eyebrow fade-up">Social proof</p>
+    <h2 class="section-title fade-up fade-up-delay-1">What <em>People Say</em></h2>
+    <p class="section-sub fade-up fade-up-delay-2">From clients, managers, and the team.</p>
+    <div class="testimonials-grid fade-up fade-up-delay-2">
+      <div class="testimonial-card">
+        <div class="quote-mark">"</div>
+        <p class="testimonial-text">She played a pivotal role in building the framework for our platform — exceptional technical expertise, structured approach, and commitment to delivering high-quality work. I highly recommend her.</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">SS</div>
+          <div class="author-info">
+            <div class="author-name">Syed Sujjad Pasha</div>
+            <div class="author-role">CEO / Founder, CricTracker</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="quote-mark">"</div>
+        <p class="testimonial-text">Hiral handles client interactions with confidence and brings excellent clarity through well-structured stories and strong UX/UI understanding. Honest, hardworking, and reliable — a great asset to any organisation.</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">KG</div>
+          <div class="author-info">
+            <div class="author-name">Komal Gharge</div>
+            <div class="author-role">Product Manager, NewVision Software</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="quote-mark">"</div>
+        <p class="testimonial-text">Her ability to analyse complex business needs, translate them into actionable insights, and drive strategic solutions is truly commendable. Any organisation would be fortunate to have her expertise.</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">AN</div>
+          <div class="author-info">
+            <div class="author-name">Arshad Nawaz Khan</div>
+            <div class="author-role">Senior Colleague, Deloitte</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TOOLS -->
+<section id="tools">
+  <div class="section-inner">
+    <p class="section-eyebrow fade-up">Tech stack</p>
+    <h2 class="section-title fade-up fade-up-delay-1">Tools &amp; <em>Technologies</em></h2>
+    <p class="section-sub fade-up fade-up-delay-2">The tools I work with daily to deliver structured, scalable solutions.</p>
+    <div class="tools-wrapper fade-up fade-up-delay-2">
+      <div class="tool-chip"><span class="tool-chip-dot"></span>JIRA</div>
+      <div class="tool-chip"><span class="tool-chip-dot"></span>Azure DevOps</div>
+      <div class="tool-chip"><span class="tool-chip-dot"></span>Confluence</div>
+      <div class="tool-chip"><span class="tool-chip-dot"></span>Power BI</div>
+      <div class="tool-chip"><span class="tool-chip-dot"></span>SQL</div>
+      <div class="tool-chip"><span class="tool-chip-dot"></span>Microsoft Fabric</div>
+      <div class="tool-chip"><span class="tool-chip-dot"></span>Figma</div>
+      <div class="tool-chip"><span class="tool-chip-dot"></span>Visio</div>
+      <div class="tool-chip"><span class="tool-chip-dot"></span>ServiceNow</div>
+      <div class="tool-chip"><span class="tool-chip-dot"></span>Murex</div>
+      <div class="tool-chip"><span class="tool-chip-dot"></span>Broadridge</div>
+      <div class="tool-chip"><span class="tool-chip-dot"></span>DTCC</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-inner">
+    <p class="section-eyebrow fade-up">Let's work together</p>
+    <h2 class="section-title fade-up fade-up-delay-1">Get in <em>Touch</em></h2>
+    <p class="section-sub fade-up fade-up-delay-2">Open to Senior BA roles, hybrid and on-site. Available for immediate joining.</p>
+    <div class="contact-card fade-up fade-up-delay-2">
+      <div class="contact-links">
+        <a href="mailto:hiral.r.borad@gmail.com" class="contact-link">
+          <div class="contact-link-left">
+            <div class="contact-link-icon">✉️</div>
+            <div>
+              <span class="contact-link-label">Email</span>
+              <span class="contact-link-value">hiral.r.borad@gmail.com</span>
+            </div>
+          </div>
+          <span class="contact-link-arrow">→</span>
+        </a>
+        <a href="https://www.linkedin.com/in/hiral-r-borad/" target="_blank" class="contact-link">
+          <div class="contact-link-left">
+            <div class="contact-link-icon">💼</div>
+            <div>
+              <span class="contact-link-label">LinkedIn</span>
+              <span class="contact-link-value">linkedin.com/in/hiral-r-borad</span>
+            </div>
+          </div>
+          <span class="contact-link-arrow">→</span>
+        </a>
+        <a href="tel:+918866245249" class="contact-link">
+          <div class="contact-link-left">
+            <div class="contact-link-icon">📞</div>
+            <div>
+              <span class="contact-link-label">Phone / WhatsApp</span>
+              <span class="contact-link-value">+91 88662 45249</span>
+            </div>
+          </div>
+          <span class="contact-link-arrow">→</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-logo">Hiral Borad</span>
+  <span class="footer-copy">Senior Business Analyst · Pune, India · Available Immediately</span>
+</footer>
+
+<script>
+  // Intersection Observer for fade-up animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // Immediately show hero elements
+  setTimeout(() => {
+    document.querySelectorAll('#hero .fade-up').forEach(el => el.classList.add('visible'));
+  }, 100);
+</script>
+</body>
+</html>
